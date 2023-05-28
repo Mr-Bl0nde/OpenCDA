@@ -14,6 +14,10 @@ from omegaconf import OmegaConf
 
 from opencda.version import __version__
 
+# Add opencood module to the path since there is an extra dir between this file and the dir with an __init__ file. Inserted to path here so all subsequent scripts can use opencood.
+sys.path.insert(0, 'C:\Apps\OpenCDA\opencood')
+
+
 
 def arg_parse():
     # create an argument parser
