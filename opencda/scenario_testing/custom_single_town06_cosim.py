@@ -24,7 +24,7 @@ def run_scenario(opt, scenario_params):
         # sumo conifg file path
         current_path = os.path.dirname(os.path.realpath(__file__))
         sumo_cfg = os.path.join(current_path,
-                                '../assets/Town06')
+                                '../assets/custom_single_town06_cosim')
 
         # create co-simulation scenario manager
         scenario_manager = \

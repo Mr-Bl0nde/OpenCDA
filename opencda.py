@@ -54,7 +54,11 @@ def main():
     default_dict = OmegaConf.load(default_yaml)
     scene_dict = OmegaConf.load(config_yaml)
     # merge the dictionaries
+    # the second passed dictionary overwrites where conflicts exist e.g. conflicting perception parameters 
     scene_dict = OmegaConf.merge(default_dict, scene_dict)
+
+    # Print out all parameters affecting this scenario between the default and custom scenario .yamls
+    print(scene_dict)
 
     # import the testing script
     testing_scenario = importlib.import_module(
