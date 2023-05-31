@@ -16,7 +16,7 @@
         <param key="device.ssm.thresholds" value="3.0 3.0 2.0"/> 
         <param key="device.ssm.range" value="50.0" />
         <param key="device.ssm.extratime" value="5.0" />
-        <param key="device.ssm.file" value="ssm_v1.xml" />
+        <param key="device.ssm.file" value="..\..\scenario_testing\evaluations\ssm_logs\ssm_v1.xml" />
         <param key="device.ssm.trajectories" value="true" />
         <param key="device.ssm.geo" value="false" />
         <param key="device.ssm.write-positions" value="true" />

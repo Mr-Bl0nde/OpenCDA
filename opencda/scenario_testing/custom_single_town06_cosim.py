@@ -12,6 +12,7 @@ from opencda.core.common.cav_world import CavWorld
 from opencda.scenario_testing.evaluations.evaluate_manager import \
     EvaluationManager
 from opencda.scenario_testing.utils.yaml_utils import add_current_time
+from opencda.scenario_testing.evaluations.ssm_utils import ssm_log_to_csv
 
 
 def run_scenario(opt, scenario_params):
@@ -66,3 +67,9 @@ def run_scenario(opt, scenario_params):
         scenario_manager.close()
         for v in single_cav_list:
             v.destroy()
+
+        # Convert SSM logs to CSV format
+        log_dir = os.path.join(current_path, 'evaluations\ssm_logs')
+        log_path = os.path.join(log_dir, 'ssm_v1.xml')
+        ssm_log_to_csv(log_path, log_dir)
+        # ssm_log_to_csv('C:\Apps\OpenCDA\opencda\scenario_testing\evaluations\ssm_logs\ssm_v1_archive.xml', 'C:\Apps\OpenCDA\opencda\scenario_testing\evaluations\ssm_logs')

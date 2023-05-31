@@ -4,12 +4,13 @@ description: |-
   Content: This is the scenario testing configuration file for single vehicle full-stack system in town06 with co-simulation
 
 # First define the basic parameters of the vehicles
+
 vehicle_base:
   sensing:
     perception:
       activate: true # when not activated, objects positions will be retrieved from server directly
       camera:
-        visualize: 4 # how many camera images need to be visualized. 0 means no visualization for camera
+        visualize: 0 #4 # how many camera images need to be visualized. 0 means no visualization for camera. DOES/DOES NOT affect perception, only whether the cameras are visualized for you as simulation is running. Disabling speeds up simulation.
         num: 4 # how many cameras are mounted on the vehicle. Maximum 3(frontal, left and right cameras)
         # relative positions (x,y,z,yaw) of the camera. len(positions) should be equal to camera num
         positions:
@@ -17,11 +18,17 @@ vehicle_base:
           - [0.0, 0.3, 1.8, 100]
           - [0.0, -0.3, 1.8, -100]
           - [-2.0, 0.0, 1.5, 180]
+      lidar:
+        visualize: false # DOES/DOES NOT affect perception, only whether the lidar sensors are visualized for you as simulation is running. Disabling speeds up simulation.
 
     localization:
       activate: true # when not activated, ego position will be retrieved from server directly
       debug_helper:
         show_animation: false # whether to show real-time trajectory plotting
+  
+  map_manager:
+    visualize: false # Whether to visualize a rasterized version of the map (BEV bird's eye view window).
+    activate: false # Disabled BEV rasterized view to cut down on processing time. DOES NOT affect perception processing. 
 
   behavior:
     ignore_traffic_light: false # whether to ignore traffic light
