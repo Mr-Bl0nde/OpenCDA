@@ -1,8 +1,16 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <configuration>
   <input>
-        <net-file value="custom_single_town10_cosim.net.xml"/>
+    <net-file value="custom_single_town10_cosim.net.xml"/>
     <route-files value="custom_single_town10_cosim.rou.xml"/>
   </input>
   <num-clients value="1"/>
+  <device.ssm.deterministic value="true"/>
+  <device.ssm.measures value="TTC DRAC PET"/>
+  <device.ssm.thresholds value="3.0 3.0 2.0"/>
+  <device.ssm.range value="50.0"/>
+  <device.ssm.extratime value="5.0"/>
+  <device.ssm.file value="..\..\scenario_testing\evaluations\ssm_logs\town10\ssm_town10.xml"/>
+  <device.ssm.trajectories value="true"/>
+  <device.ssm.geo value="false"/>
 </configuration>
