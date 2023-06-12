@@ -42,7 +42,7 @@ vehicle_base:
 sumo:
   port: ~
   host: ~
-  gui: true
+  gui: false
   client_order: 1
   step_length: ${world.fixed_delta_seconds}
 
