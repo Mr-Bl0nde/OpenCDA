@@ -55,11 +55,11 @@ def run_scenario(opt, scenario_params):
 
             transform = single_cav_list[0].vehicle.get_transform()
             spectator.set_transform(carla.Transform(transform.location +
-                                                    carla.Location(z=50), 
+                                                    carla.Location(z=80), 
                                                     carla.Rotation(pitch=-90)))
             
             # # Modified spectator position so I can try to pin down a reasonable Carla spawn coordinate (not equivalent to SUMO coordinates :/ )
-            # transform = carla.Transform(carla.Location(x=0, y=0, z=80), carla.Rotation(pitch=-90, yaw=0, roll=0))
+            # transform = carla.Transform(carla.Location(x=-26.66,y=-24.54, z=80), carla.Rotation(pitch=-90))
             # spectator.set_transform(transform)
 
             for i, single_cav in enumerate(single_cav_list):

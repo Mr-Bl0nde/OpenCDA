@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<configuration>
+  <!-- SYSTEM PARAMETERS -->
+  <!-- Sets time length of each simulation step (s). Greater values result in choppier movements and poor traffic flow -->
+  <step-length value="0.05"/>
+  <!-- IDK, here by default -->
+  <num-clients value="1"/>
+
+  <!-- ROUTING PARAMETERS -->
+  <!-- Likelihood that a given vehicle has a rerouting device (0-1 scale I think) -->
+  <device.rerouting.probability value="1"/>
+  <!-- Simulation time period after which vehicles w/ rerouting devices re-evaluate their quickest route to the next destination -->
+  <device.rerouting.period value="1"/>
+  <!-- Apparently ignores vehicles blocking an intersection after n seconds by going around them? What an innovation! It's actually terrible, it just tells the vehicles to crash into the blocking vehicle instead of using a different lane to get around them lol
+  <ignore-junction-blocker value="5"/> -->
+  <!-- Sets maximum time (s) before a vehicle is removed from the simulation if their insertion is delayed. 0 prevents ever inserting initial fails. -->
+  <max-depart-delay value="0"/>
+  <!-- Idk if this will work here instead of as a netconvert parameter, but I think this may enable u-turns, which may cause more deadlocks but be more realistic -->
+  <!-- <no-turnarounds.except-deadend value="false"/> -->
+  <!-- Caused sumo gui to fail on load -->
+
+  <!-- COLLISION PARAMETERS -->
+  <!-- Disables teleportation of vehicles upon collision or waiting greater than 300s -->
+  <time-to-teleport value="-1"/>
+  <!-- Allows checking for collisions at intersections; default false for some reason -->
+  <collision.check-junctions value="true"/>
+  <!-- Sets global collision detection to PHYSICAL COLLISIONS, not just violations of minGap (2.5m) -->
+  <collision.mingap-factor value="0"/>
+  <!-- Time (s) to stop in place after a collision occurs, as opposed to the default behavior of teleporting to the next point in the route. -->
+  <collision.stoptime value="15"/>
+
+  <!-- INPUT PARAMETERS -->
+  <input>
+    <net-file value="custom_single_town10_cosim_tlsmod.net.xml"/>
+    <route-files value="custom_single_town10_cosim_cfm_modded.rou.xml"/>
+  </input>
+
+  <!-- OUTPUT PARAMETERS -->
+  <output>
+    <lanechange-output value="C:\Apps\OpenCDA\opencda\assets\custom_single_town10_cosim\output.xml"/>
+  </output>
+</configuration>

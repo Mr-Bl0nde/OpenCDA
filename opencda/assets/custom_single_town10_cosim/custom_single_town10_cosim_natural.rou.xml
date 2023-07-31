@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2023-06-23 15:59:07.718783 by randomTrips.py v1_16_0+0000-94ec4c6cd72
+<configuration>
+    <begin value="0"/>
+    <end value="140"/>
+    <intermediate value="5"/>
+    <min-distance value="200.0"/>
+    <net-file value="C:\Apps\OpenCDA\opencda\assets\custom_single_town10_cosim\custom_single_town10_cosim.net.xml"/>
+    <period value="1.0"/>
+    <seed value="12345"/>
+    <trip-attributes value="departSpeed=&quot;max&quot; departLane=&quot;best&quot; departPos=&quot;random&quot;"/>
+    <output-trip-file value="C:\Apps\OpenCDA\opencda\assets\custom_single_town10_cosim\custom_single_town10_cosim.rou.xml"/>
+</configuration>
+-->
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+    <trip id="0" depart="0.00" from="-6" to="11" via="-0 21 -20 -3 -16"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="1" depart="1.00" from="-15" to="-3" via="-13 -6 10 -16 10"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="2" depart="2.00" from="8" to="18" via="-12 9 -5 0 -14"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="3" depart="3.00" from="-16" to="19" via="-22 -1 -22 8 9"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="4" depart="4.00" from="-0" to="-6" via="7 4 2 -16 -12"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="5" depart="5.00" from="4" to="21" via="11 18 -18 1 17"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="6" depart="6.00" from="21" to="-16" via="-18 4 -17 20 10"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="7" depart="7.00" from="12" to="22" via="0 8 -1 -15 9"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="8" depart="8.00" from="-14" to="17" via="-18 1 -15 -21 -10"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="9" depart="9.00" from="-11" to="16" via="9 6 20 2 -3"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="10" depart="10.00" from="2" to="-6" via="-9 -10 13 -21 13"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="11" depart="11.00" from="7" to="-15" via="-17 2 17 10 -11"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="12" depart="12.00" from="8" to="-0" via="-18 -15 -20 1 0"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="13" depart="13.00" from="-0" to="0" via="-9 -16 12 20 -12"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="14" depart="14.00" from="-5" to="-1" via="20 7 -6 -19 4"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="15" depart="15.00" from="-22" to="-6" via="-5 -16 16 0 -19"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="16" depart="16.00" from="16" to="-17" via="-21 -11 -8 -16 13"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="17" depart="17.00" from="-14" to="15" via="5 -22 -20 1 16"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="18" depart="18.00" from="20" to="13" via="-19 -6 -3 0 11"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="19" depart="19.00" from="-11" to="-5" via="-4 17 -1 19 16"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="20" depart="20.00" from="-7" to="-22" via="-2 18 -9 -2 -1"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="21" depart="21.00" from="6" to="-16" via="16 13 6 -1 12"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="22" depart="22.00" from="-5" to="-11" via="-16 -3 5 18 22"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="23" depart="23.00" from="-20" to="-18" via="20 -1 -16 -11 21"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="24" depart="24.00" from="-6" to="-21" via="-0 -13 0 20 -22"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="25" depart="25.00" from="-1" to="8" via="-12 -14 -17 11 -3"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="26" depart="26.00" from="-20" to="-5" via="3 -12 1 10 15"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="27" depart="27.00" from="1" to="-15" via="2 -14 1 12 2"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="28" depart="28.00" from="-6" to="15" via="-1 15 3 -3 21"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="29" depart="29.00" from="-0" to="11" via="-8 -10 -21 20 -13"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="30" depart="30.00" from="-10" to="-21" via="-13 7 -12 -16 7"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="31" depart="31.00" from="-17" to="19" via="-12 -9 -10 -18 -18"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="32" depart="32.00" from="-15" to="5" via="12 -19 9 9 6"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="33" depart="33.00" from="10" to="-0" via="6 14 -15 18 3"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="34" depart="34.00" from="-16" to="-18" via="20 2 10 -13 -2"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="35" depart="35.00" from="9" to="14" via="-18 -4 16 15 10"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="36" depart="36.00" from="3" to="-3" via="6 -12 -1 6 5"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="37" depart="37.00" from="-5" to="11" via="16 -6 -13 -19 -20"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="38" depart="38.00" from="-15" to="20" via="18 8 -4 11 14"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="39" depart="39.00" from="13" to="16" via="0 18 -1 7 5"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="40" depart="40.00" from="-17" to="-19" via="13 -1 -5 -17 10"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="41" depart="41.00" from="-12" to="20" via="20 -19 10 -0 10"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="42" depart="42.00" from="20" to="-17" via="-22 -13 13 -21 -20"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="43" depart="43.00" from="-5" to="11" via="16 -5 14 18 21"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="44" depart="44.00" from="9" to="6" via="0 1 15 8 17"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="45" depart="45.00" from="-15" to="-21" via="-6 17 18 22 -2"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="46" depart="46.00" from="-5" to="-18" via="-5 -12 -4 14 19"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="47" depart="47.00" from="13" to="6" via="19 -15 -0 -15 16"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="48" depart="48.00" from="-4" to="12" via="-21 13 -21 -1 -19"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="49" depart="49.00" from="-8" to="16" via="-22 -5 -14 2 -4"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="50" depart="50.00" from="11" to="19" via="5 20 -14 -7 -0"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="51" depart="51.00" from="-18" to="12" via="8 -18 0 -9 22"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="52" depart="52.00" from="4" to="16" via="-21 -12 -16 -10 17"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="53" depart="53.00" from="19" to="-22" via="2 -13 -10 15 -0"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="54" depart="54.00" from="12" to="-21" via="15 13 7 8 -21"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="55" depart="55.00" from="-0" to="16" via="-13 -7 14 -18 -12"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="56" depart="56.00" from="15" to="6" via="0 -14 -17 -2 3"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="57" depart="57.00" from="-10" to="21" via="7 5 20 -18 8"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="58" depart="58.00" from="-14" to="15" via="-1 -4 11 -1 7"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="59" depart="59.00" from="0" to="21" via="-9 -12 19 19 -1"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="60" depart="60.00" from="-3" to="-11" via="6 -22 -17 -17 -22"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="61" depart="61.00" from="-15" to="-14" via="-8 10 10 -14 -1"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="62" depart="62.00" from="5" to="-19" via="-14 16 10 12 7"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="63" depart="63.00" from="17" to="6" via="0 -3 -5 -17 -12"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="64" depart="64.00" from="14" to="20" via="-15 20 -16 15 11"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="65" depart="65.00" from="-5" to="-14" via="7 18 -7 -13 -19"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="66" depart="66.00" from="0" to="20" via="21 19 14 -6 -2"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="67" depart="67.00" from="15" to="-4" via="15 10 20 12 -2"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="68" depart="68.00" from="-21" to="-9" via="-20 5 17 13 -7"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="69" depart="69.00" from="-12" to="5" via="-8 12 -3 0 9"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="70" depart="70.00" from="-11" to="-14" via="7 20 21 21 -17"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="71" depart="71.00" from="14" to="-2" via="22 -12 -0 7 5"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="72" depart="72.00" from="22" to="14" via="-20 22 -0 12 -18"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="73" depart="73.00" from="-1" to="-15" via="14 -12 -7 -11 -4"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="74" depart="74.00" from="-22" to="-5" via="-8 15 14 1 3"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="75" depart="75.00" from="-14" to="-22" via="16 -3 6 -4 -0"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="76" depart="76.00" from="8" to="-17" via="-8 21 -3 12 -11"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="77" depart="77.00" from="-12" to="-2" via="-5 -21 10 14 -19"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="78" depart="78.00" from="-1" to="-0" via="-13 -4 5 -16 -5"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="79" depart="79.00" from="12" to="-16" via="-6 -22 -4 -2 -5"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="80" depart="80.00" from="17" to="-8" via="6 5 -3 -0 2"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="81" depart="81.00" from="10" to="-1" via="15 21 0 -6 -14"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="82" depart="82.00" from="-15" to="-5" via="-15 7 11 -1 -21"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="83" depart="83.00" from="22" to="20" via="-6 10 -2 -21 -11"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="84" depart="84.00" from="-9" to="20" via="18 11 -12 -2 -21"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="85" depart="85.00" from="-22" to="-22" via="8 20 16 1 16"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="86" depart="86.00" from="-12" to="-6" via="3 -8 8 18 11"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="87" depart="87.00" from="16" to="-12" via="-19 -3 -21 21 7"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="88" depart="88.00" from="-1" to="15" via="-3 16 -7 19 8"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="89" depart="89.00" from="15" to="16" via="-14 11 13 -16 -1"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="90" depart="90.00" from="9" to="21" via="14 -17 4 -21 -22"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="91" depart="91.00" from="20" to="-18" via="6 4 -0 -18 11"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="92" depart="92.00" from="3" to="-8" via="18 19 7 17 8"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="93" depart="93.00" from="-14" to="-14" via="0 7 13 -21 -12"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="94" depart="94.00" from="-13" to="15" via="17 -22 -6 8 -22"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="95" depart="95.00" from="-3" to="10" via="-4 -6 -7 -13 14"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="96" depart="96.00" from="-13" to="0" via="8 9 -2 -22 2"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="97" depart="97.00" from="11" to="4" via="2 19 -2 -9 21"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="98" depart="98.00" from="3" to="-19" via="20 15 -1 -3 17"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="99" depart="99.00" from="-10" to="-1" via="12 2 9 18 -7"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="100" depart="100.00" from="16" to="12" via="5 0 10 -12 -21"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="101" depart="101.00" from="20" to="16" via="-21 22 12 10 -17"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="102" depart="102.00" from="-14" to="5" via="-6 4 3 7 -16"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="103" depart="103.00" from="-8" to="-18" via="-15 5 7 8 -3"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="104" depart="104.00" from="6" to="21" via="17 6 18 9 18"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="105" depart="105.00" from="6" to="14" via="-6 6 -6 8 1"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="106" depart="106.00" from="-0" to="-13" via="-22 -2 -0 -21 -19"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="107" depart="107.00" from="-19" to="17" via="3 -17 17 9 -0"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="108" depart="108.00" from="-14" to="20" via="-16 -21 6 4 -12"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="109" depart="109.00" from="-11" to="-6" via="-3 9 4 -13 11"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="110" depart="110.00" from="16" to="-10" via="3 10 6 5 -15"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="111" depart="111.00" from="-17" to="12" via="0 16 3 18 15"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="112" depart="112.00" from="15" to="16" via="-5 15 22 3 18"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="113" depart="113.00" from="-11" to="22" via="-22 -7 -21 -17 -4"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="114" depart="114.00" from="-2" to="-0" via="7 -0 -6 18 19"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="115" depart="115.00" from="-13" to="-12" via="-11 10 -12 -5 -2"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="116" depart="116.00" from="-4" to="16" via="-7 11 -22 -11 -22"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="117" depart="117.00" from="-0" to="-12" via="1 -0 3 -17 1"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="118" depart="118.00" from="10" to="21" via="20 6 20 5 -0"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="119" depart="119.00" from="-10" to="-11" via="4 9 18 12 18"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="120" depart="120.00" from="3" to="-4" via="-12 -18 -2 16 -5"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="121" depart="121.00" from="0" to="-12" via="19 22 22 -20 -10"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="122" depart="122.00" from="-13" to="-19" via="19 -11 19 -0 16"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="123" depart="123.00" from="14" to="5" via="19 15 -11 -0 -4"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="124" depart="124.00" from="-8" to="6" via="-2 -8 21 -17 -13"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="125" depart="125.00" from="-6" to="-19" via="-7 -21 -19 3 20"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="126" depart="126.00" from="18" to="3" via="6 -6 9 -12 22"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="127" depart="127.00" from="-19" to="20" via="-2 -2 -14 21 17"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="128" depart="128.00" from="14" to="1" via="-2 -12 -19 20 -0"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="129" depart="129.00" from="-21" to="3" via="-20 -22 12 -15 -15"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="130" depart="130.00" from="19" to="-7" via="-3 -19 11 6 20"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="131" depart="131.00" from="14" to="4" via="-3 17 0 -1 16"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="132" depart="132.00" from="-9" to="-20" via="-15 -20 -16 22 18"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="133" depart="133.00" from="-20" to="-11" via="-13 -7 8 19 7"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="134" depart="134.00" from="6" to="19" via="5 21 -13 3 8"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="135" depart="135.00" from="0" to="-0" via="-22 4 12 -21 -11"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="136" depart="136.00" from="17" to="-8" via="-20 -14 -21 -8 22"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="137" depart="137.00" from="-13" to="-4" via="22 16 10 5 -5"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="138" depart="138.00" from="-10" to="-7" via="17 13 7 -0 -5"  departSpeed="max" departLane="best" departPos="random"/>
+    <trip id="139" depart="139.00" from="-6" to="-6" via="-1 21 -1 14 -21"  departSpeed="max" departLane="best" departPos="random"/>
+</routes>

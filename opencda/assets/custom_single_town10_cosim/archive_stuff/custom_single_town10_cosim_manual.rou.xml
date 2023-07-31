@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<routes>
+    <vType id="vType_0" minGap="2.00" speedFactor="normc(1.00,0.00)" vClass="passenger" carFollowModel="IDMM" tau="0.4"/>
+    <vType id="DEFAULT_VEHTYPE" minGap="2.50" tau="1.0"  color="255,255,255" Class="passenger" accel="0.5" carFollowModel="EIDM" laneChangeModel="SL2015" sigmaerror="0.5" sigmagap="0.5" sigmaleader="0.10"/>
+    <route id="route1" edges="-18 -19 -15 -16 22 -7"/>
+    <route id="route2" edges="-10 -17 7"/>
+    <vehicle id="v1" route="route1" depart="0.00" departSpeed="16" departLane="1" arrivalLane="0" type="DEFAULT_VEHTYPE" color="150, 200, 30"/>
+    <vehicle id="v2" route="route2" depart="0.00" departSpeed="16" departLane="1" arrivalLane="1" type="DEFAULT_VEHTYPE" color="150, 200, 30"/>
+</routes>

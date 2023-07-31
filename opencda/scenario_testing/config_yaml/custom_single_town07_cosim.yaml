@@ -42,7 +42,7 @@ vehicle_base:
 sumo:
   port: ~
   host: ~
-  gui: false
+  gui: true
   client_order: 1
   step_length: ${world.fixed_delta_seconds}
 
@@ -51,7 +51,7 @@ sumo:
 scenario:
   single_cav_list: # this is for merging vehicle or single cav without v2x
     - name: cav1
-      spawn_position: [0, 0, 0.3, 0, 0, 0]
+      spawn_position: [-20, -62.5, 0.3, 0, 0, 0]
       destination: [15.5,-240.5, 0.3]
       v2x:
         communication_range: 45
