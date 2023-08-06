@@ -105,7 +105,7 @@ vehicle_base:
       history_size: 30
       col_thresh: 1
     stuck_dector:
-      len_thresh: 500
+      len_thresh: 50 # unit is simulation ticks. If simulation ticks are 0.05 seconds, the python console will begin printing stuck status reports after 2.5 simulation seconds.
       speed_thresh: 0.5
     offroad_dector: [ ]
     traffic_light_detector: # whether the vehicle violate the traffic light

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- generated on 2023-08-05 12:21:33 by Eclipse SUMO netconvert Version 1.16.0
+<!-- generated on 2023-08-05 12:14:47 by Eclipse SUMO netconvert Version 1.16.0
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/netconvertConfiguration.xsd">
 
     <input>
@@ -8,7 +8,7 @@
     </input>
 
     <output>
-        <output-file value="C:\Apps\OpenCDA\opencda\assets\custom_single_town07_cosim\custom_single_town07_cosim.net.xml"/>
+        <output-file value="C:\Apps\OpenCDA\opencda\assets\custom_single_town07_cosim\custom_single_town07.net.xml"/>
     </output>
 
     <processing>
