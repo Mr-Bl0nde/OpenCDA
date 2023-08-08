@@ -105,7 +105,7 @@ vehicle_base:
       history_size: 30
       col_thresh: 1
     stuck_dector:
-      len_thresh: 50 # unit is simulation ticks. If simulation ticks are 0.05 seconds, the python console will begin printing stuck status reports after 2.5 simulation seconds.
+      len_thresh: 500 # unit is simulation ticks. If simulation ticks are 0.05 seconds, the python console will begin printing stuck status reports after 2.5 simulation seconds.
       speed_thresh: 0.5
     offroad_dector: [ ]
     traffic_light_detector: # whether the vehicle violate the traffic light
@@ -122,13 +122,13 @@ vehicle_base:
     overtake_allowed: true # whether overtake allowed, typically false for platoon leader
     collision_time_ahead: 1.5 # used for collision checking
     overtake_counter_recover: 35 # the vehicle can not do another overtake during next certain steps
-    sample_resolution: 4.5 # the unit distance between two adjacent waypoints in meter
+    sample_resolution: 4.5 # 2.5 # 4.5 # the unit distance between two adjacent waypoints in meter
     local_planner:  # trajectory planning related
       buffer_size: 12 # waypoint buffer size
-      trajectory_update_freq: 15 # used to control trajectory points updating frequency
-      waypoint_update_freq: 9 # used to control waypoint updating frequency
+      trajectory_update_freq: 15 # 4 # 15 # used to control trajectory points updating frequency
+      waypoint_update_freq: 9 # 3 # 9 # used to control waypoint updating frequency
       min_dist: 3 # used to pop out the waypoints too close to current location
-      trajectory_dt: 0.20 # for every dt seconds, we sample a trajectory point from the trajectory path as next goal state
+      trajectory_dt: 0.20 # ${world.fixed_delta_seconds} #0.20 # 0.05 # 0.20 # for every dt seconds, we sample a trajectory point from the trajectory path as next goal state
       debug: false # whether to draw future/history waypoints
       debug_trajectory: false # whether to draw the trajectory points and path
 
@@ -147,7 +147,7 @@ vehicle_base:
       dt: ${world.fixed_delta_seconds} # this should be equal to your simulation time-step
       max_brake: 1.0
       max_throttle: 1.0
-      max_steering: 0.3
+      max_steering: 1.0 # 0.3
   v2x:  # communication related
     enabled: true
     communication_range: 35
