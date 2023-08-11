@@ -610,6 +610,7 @@ class LocalPlanner(object):
         vehicle_transform = self._ego_pos
         self.pop_buffer(vehicle_transform)
 
+        # Draw calculated trajectory set for actuation by the vehicle (green)
         if self.debug_trajectory:
             draw_trajetory_points(self._vehicle.get_world(),
                                   self._long_plan_debug,
@@ -619,19 +620,49 @@ class LocalPlanner(object):
             # draw_trajetory_points(self._vehicle.get_world(),
             # self._trajectory_buffer, size=0.1, arrow_size=0.2, z=0.1, lt=0.1)
 
+            # print("\nTrajectory:")
+            # print(len(self._long_plan_debug))
+            # # _long_plan_debug is stored as a simple list of carla.libcarla.Transform objects, from which you can extract Location and Rotation objects
+
         if self.debug:
+            # Draw waypoints along global plan path (blue)
             draw_trajetory_points(self._vehicle.get_world(),
                                   self._waypoint_buffer,
                                   z=0.1,
                                   size=0.1,
                                   color=carla.Color(0, 0, 255),
                                   lt=0.2)
+            
+            # print("\nWaypoints:")
+            # print(len(self._waypoint_buffer))
+            # # _waypoint_buffer is stored as a double-ended queue (deque: https://www.geeksforgeeks.org/deque-in-python/)
+            # # comprised of tuples with a carla.libcarla.Waypoint object and a RoadOption object from this module
+            # # Example
+            # # dequeue(
+            # #     [
+            # #         (
+            # #             <carla.libcarla.Waypoint object at 0x000001E9710C5690>,
+            # #             <RoadOption.LANEFOLLOW: 4>
+            # #         ),
+            # #         (
+            # #             <carla.libcarla.Waypoint object at 0x000001E9710C56F0>, 
+            # #             <RoadOption.LANEFOLLOW: 4>
+            # #         ),
+            # #         ... (40x if you have the waypoint buffer as 40 as I configured.)
+            # #     ]
+            # # )
+            
+            # Draw waypoints along global plan path that the vehicle has already passed (purple)
             draw_trajetory_points(self._vehicle.get_world(),
                                   self._history_buffer,
                                   z=0.1,
                                   size=0.1,
                                   color=carla.Color(255, 0, 255),
                                   lt=0.2)
+            
+            # print("\nPassed Waypoints:")
+            # print(len(self._history_buffer))
+            # # _history_buffer is also stored as a deque in the same way as _waypoint_buffer but it has a maximum length of 3 waypoints
 
         return self._target_speed, \
                self.target_waypoint.transform.location if hasattr(

@@ -11,7 +11,7 @@ vehicle_base:
     perception:
       activate: true # when not activated, objects positions will be retrieved from server directly
       camera:
-        visualize: 4 #4 # how many camera images need to be visualized. 0 means no visualization for camera. DOES/DOES NOT affect perception, only whether the cameras are visualized for you as simulation is running. Disabling speeds up simulation.
+        visualize: 0 #4 # how many camera images need to be visualized. 0 means no visualization for camera. DOES/DOES NOT affect perception, only whether the cameras are visualized for you as simulation is running. Disabling speeds up simulation.
         num: 4 # how many cameras are mounted on the vehicle. Maximum 3(frontal, left and right cameras)
         # relative positions (x,y,z,yaw) of the camera. len(positions) should be equal to camera num
         positions:
@@ -28,8 +28,8 @@ vehicle_base:
         show_animation: false # whether to show real-time trajectory plotting
   
   map_manager:
-    visualize: true # Whether to visualize a rasterized version of the map (BEV bird's eye view window).
-    activate: true # Disabled BEV rasterized view to cut down on processing time. DOES NOT affect perception processing. 
+    visualize: false # true # Whether to visualize a rasterized version of the map (BEV bird's eye view window).
+    activate: false # true # Disabled BEV rasterized view to cut down on processing time. DOES NOT affect perception processing. 
 
   behavior:
     ignore_traffic_light: false # whether to ignore traffic light
@@ -52,22 +52,26 @@ scenario:
   single_cav_list: # this is for merging vehicle or single cav without v2x
     - name: cav1
       spawn_position: [-40, -62.7, 0.3, 0, 0, 0]
-      destination: [0, -226, 0.3] # [15.5,-240.5, 0.3]
+      destination: [55.85, 0.5, 0.3] # Works but runs a red light --> [-6, 50, 0.3] # this works --> [0, -226, 0.3] # [15.5,-240.5, 0.3]
       v2x:
         communication_range: 45
       behavior:
         sample_resolution: 2.5 # the unit distance between two adjacent waypoints in meter
         local_planner:
-          trajectory_update_freq: 4
+          # buffer_size: 40
+          # trajectory_update_freq: 4
+          # waypoint_update_freq: 4
+          # trajectory_dt: 0.05
+          # min_dist: 0
           debug_trajectory: true
           debug: true
 
-    - name: cav2
-      spawn_position: [-67, -62.7, 0.3, 0, 0, 0]
-      destination: [0, -226, 0.3] # [15.5, -240, 0.3]
-      v2x:
-        communication_range: 45
-      behavior:
-        local_planner:
-          debug_trajectory: false
-          debug: false
+    # - name: cav2
+    #   spawn_position: [-67, -62.7, 0.3, 0, 0, 0]
+    #   destination: [0, -226, 0.3] # [15.5, -240, 0.3]
+    #   v2x:
+    #     communication_range: 45
+    #   behavior:
+    #     local_planner:
+    #       debug_trajectory: false
+    #       debug: false

@@ -103,8 +103,8 @@ class CoScenarioManager(ScenarioManager):
         self.sumo = SumoSimulation(sumo_cfg, sumo_step_length,
                                    sumo_host, sumo_port, sumo_gui,
                                    sumo_client_order)
-        # the sumo traffic light should be synchronized with carla
-        self.sumo.switch_off_traffic_lights()
+        # # the sumo traffic light should be synchronized with carla
+        # self.sumo.switch_off_traffic_lights()
 
         # Mapped actor ids. All vehicles controlled by sumo is
         # in sumo2carla_ids, all vehicles controlled by carla
@@ -223,17 +223,17 @@ class CoScenarioManager(ScenarioManager):
             self.sumo.synchronize_vehicle(sumo_actor_id, sumo_transform,
                                           None)
 
-        # Updates traffic lights in sumo based on carla information.
-        # todo make sure the tl is synced
-        common_landmarks = self.sumo.traffic_light_ids & \
-                           self.traffic_light_ids
-        for landmark_id in common_landmarks:
-            carla_tl_state = self.get_traffic_light_state(landmark_id)
-            sumo_tl_state = BridgeHelper.get_sumo_traffic_light_state(
-                carla_tl_state)
+        # # Updates traffic lights in sumo based on carla information.
+        # # todo make sure the tl is synced
+        # common_landmarks = self.sumo.traffic_light_ids & \
+        #                    self.traffic_light_ids
+        # for landmark_id in common_landmarks:
+        #     carla_tl_state = self.get_traffic_light_state(landmark_id)
+        #     sumo_tl_state = BridgeHelper.get_sumo_traffic_light_state(
+        #         carla_tl_state)
 
-            # Updates all the sumo links related to this landmark.
-            self.sumo.synchronize_traffic_light(landmark_id, sumo_tl_state)
+        #     # Updates all the sumo links related to this landmark.
+        #     self.sumo.synchronize_traffic_light(landmark_id, sumo_tl_state)
 
         # update the sumo2carla dict to cav world
         self.cav_world.update_sumo_vehicles(self.sumo2carla_ids)

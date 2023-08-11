@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- generated on 2023-08-11 11:20:30 by Eclipse SUMO netconvert Version 1.16.0
+<!-- generated on 2023-08-05 12:21:33 by Eclipse SUMO netconvert Version 1.16.0
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/netconvertConfiguration.xsd">
 
     <input>
@@ -14,10 +14,6 @@
     <processing>
         <offset.disable-normalization value="true"/>
     </processing>
-
-    <tls_building>
-        <tls.cycle.time value="20"/>
-    </tls_building>
 
     <junctions>
         <no-turnarounds.except-deadend value="true"/>
@@ -1196,9 +1192,9 @@
     </edge>
 
     <tlLogic id="335" type="static" programID="0" offset="0">
-        <phase duration="7"  state="GgrrGG"/>
+        <phase duration="42" state="GgrrGG"/>
         <phase duration="3"  state="yyrryy"/>
-        <phase duration="7"  state="rrGGGr"/>
+        <phase duration="42" state="rrGGGr"/>
         <phase duration="3"  state="rryyyr"/>
         <param key="linkSignalID:0" value="998"/>
         <param key="linkSignalID:1" value="998"/>
@@ -1208,9 +1204,9 @@
         <param key="linkSignalID:5" value="998 999 1000"/>
     </tlLogic>
     <tlLogic id="466" type="static" programID="0" offset="0">
-        <phase duration="7"  state="rrGGGg"/>
+        <phase duration="42" state="rrGGGg"/>
         <phase duration="3"  state="rryyyy"/>
-        <phase duration="7"  state="GGGrrr"/>
+        <phase duration="42" state="GGGrrr"/>
         <phase duration="3"  state="yyyrrr"/>
         <param key="linkSignalID:0" value="1009"/>
         <param key="linkSignalID:1" value="1008"/>
@@ -1220,9 +1216,9 @@
         <param key="linkSignalID:5" value="1008 1008"/>
     </tlLogic>
     <tlLogic id="68" type="static" programID="0" offset="0">
-        <phase duration="7"  state="rrrGGgrrrGGg"/>
+        <phase duration="42" state="rrrGGgrrrGGg"/>
         <phase duration="3"  state="rrryyyrrryyy"/>
-        <phase duration="7"  state="GGgrrrGGgrrr"/>
+        <phase duration="42" state="GGgrrrGGgrrr"/>
         <phase duration="3"  state="yyyrrryyyrrr"/>
         <param key="linkSignalID:0" value="982"/>
         <param key="linkSignalID:1" value="982"/>
@@ -1238,9 +1234,9 @@
         <param key="linkSignalID:9" value="981 979"/>
     </tlLogic>
     <tlLogic id="725" type="static" programID="0" offset="0">
-        <phase duration="7"  state="rrrGGgrrrGGg"/>
+        <phase duration="42" state="rrrGGgrrrGGg"/>
         <phase duration="3"  state="rrryyyrrryyy"/>
-        <phase duration="7"  state="GGgrrrGGgrrr"/>
+        <phase duration="42" state="GGgrrrGGgrrr"/>
         <phase duration="3"  state="yyyrrryyyrrr"/>
         <param key="linkSignalID:0" value="1024 1025"/>
         <param key="linkSignalID:1" value="1025"/>
@@ -1256,9 +1252,9 @@
         <param key="linkSignalID:9" value="1022 1025"/>
     </tlLogic>
     <tlLogic id="918" type="static" programID="0" offset="0">
-        <phase duration="7"  state="GgrrGG"/>
+        <phase duration="42" state="GgrrGG"/>
         <phase duration="3"  state="yyrryy"/>
-        <phase duration="7"  state="rrGGGr"/>
+        <phase duration="42" state="rrGGGr"/>
         <phase duration="3"  state="rryyyr"/>
         <param key="linkSignalID:0" value="1032 1034 1032"/>
         <param key="linkSignalID:1" value="1032 1033"/>
