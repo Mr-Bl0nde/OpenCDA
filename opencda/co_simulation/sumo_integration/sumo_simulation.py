@@ -110,12 +110,13 @@ class SumoTLLogic(object):
     """
     SumoTLLogic holds the data relative to a traffic light in sumo.
     """
-    def __init__(self, tlid, states, parameters):
+    def __init__(self, tlid, states, parameters, net):
+        self.net = net  # ADDITION: passed down the .net.xml object originally read in SumoSimulation obj. This will be used to associate coordinates for all SUMO traffic lights
         self.tlid = tlid
         self.states = states
-
         self._landmark2link = {}
         self._link2landmark = {}
+
         for link_index, landmark_id in parameters.items():
             # Link index information is added in the parameter as 'linkSignalID:x'
             link_index = int(link_index.split(':')[1])
@@ -154,24 +155,25 @@ class SumoTLLogic(object):
         return self._landmark2link.get(landmark_id, [])
 
 
+
 class SumoTLManager(object):
     """
     SumoTLManager is responsible for the management of the sumo traffic lights (i.e., keeps control
     of the current program, phase, ...)
     """
-    def __init__(self):
+    def __init__(self, net):
+        self.net = net
         self._tls = {}  # {tlid: {program_id: SumoTLLogic}
         self._current_program = {}  # {tlid: program_id}
         self._current_phase = {}  # {tlid: index_phase}
 
         for tlid in traci.trafficlight.getIDList():
             self.subscribe(tlid)
-
             self._tls[tlid] = {}
             for tllogic in traci.trafficlight.getAllProgramLogics(tlid):
                 states = [phase.state for phase in tllogic.getPhases()]
                 parameters = tllogic.getParameters()
-                tl = SumoTLLogic(tlid, states, parameters)
+                tl = SumoTLLogic(tlid, states, parameters, self.net)
                 self._tls[tlid][tllogic.programID] = tl
 
             # Get current status of the traffic lights.
@@ -256,6 +258,98 @@ class SumoTLManager(object):
         for tlid, link_index in self.get_all_associated_signals(landmark_id):
             traci.trafficlight.setLinkState(tlid, link_index, state)
         return True
+    
+    def set_states_from_sumo(self, world):   
+        """
+        Sets a CARLA traffic light's state from the corresponding SUMO traffic light
+            1) Get all carla tls from self._tls
+            2) Get all SUMO signal states
+            3) For each carla tl, set it to the corresponding sumo tl signal
+        :param world: The CARLA world object containing data and access methods for the active simulation environment
+        """
+
+        # LOOP THROUGH NETWORK JUNCTIONS WITH TRAFFIC LIGHTS (c_tl). Labeled c_tl because it represents a traffic light group in CARLA and corresponds to a single junction in SUMO
+        # Number of iterations equal to the number of signalized intersections in a map
+        for c_tl in self._tls.items():
+            # c_tl structure is like: 
+            # ('725', {'0': <opencda.co_simulation.sumo_integration.sumo_simulation.SumoTLLogic object at 0x000001F884D84A08>})
+            # Thus c_tl[0] is the SUMO Traffic Light ID visible in SUMO-GUI
+            # c_tl[1] is a dictionary with the traffic program index (just 0 unless multiple programs are defined) and the SumoTLLogic object created to represent that light program in CARLA. This object contains a list of individual lights and their associations between the programs.
+            # Furthermore, the landmark2link list of each program (e.g. {'1032': [('918', 0), ('918', 1)], '1034': [('918', 2), ('918', 3)], ...}) can be accessed with c_tl[1][i]._landmark2link
+            # This dictionary says CARLA landmark id 1032 (a signal asset) controls flow on linkSignalID:0 and 1 for SUMO junction 918
+
+            # LOOP THROUGH PROGRAMS ASSOCIATED WITH EACH JUNCTION.
+            # Access the landmark2link list of each program associated with this traffic light (in case multiple are assigned)
+            for i in c_tl[1]:
+                # Get sumo traffic light state for this whole junction - states are in order of link index e.g. GGgrrrGGgrrr = 0(G), 1(G), 2(g), 3(r), ...
+                traci_junction_state = traci.trafficlight.getRedYellowGreenState(c_tl[0])
+                sumo_junction_program = c_tl[1][i]
+                landmark2link = sumo_junction_program._landmark2link
+
+                # LOOP THROUGH TRAFFIC LIGHTS CONTROLLING EACH ENTRY POINT INTO THE JUNCTION
+                # Parse the landmark2link list in order to assign individual carla lights (c_tlid) their corresponding signal states from SUMO
+                for c_tlid in landmark2link:
+                    # Re-sort the list by the second value in each tuple (the link index) because they were somehow sorted by ACII character
+                    # e.g. [('725', 10), ('725', 11), ('725', 9)]  --> [('725', 9), ('725', 10), ('725', 11)]
+                    resorted_idx_list = sorted(landmark2link[c_tlid], key=lambda x: x[1])
+                    link2sumostate = []
+
+                    # LOOP THROUGH POSSIBLE OUTLET DIRECTIONS FROM EACH ENTRY POINT INTO THE JUNCTION
+                    # Populate a list of SUMO light states for this particular CARLA traffic light in right, straight, left turn order
+                    for junction_plus_idx in resorted_idx_list:
+                        # Get a traffic light Actor object corresponding to this CARLA tlid from the world object.
+                        carla_tl_to_change = world.get_traffic_light_from_opendrive_id(sumo_junction_program._link2landmark[junction_plus_idx])
+                        sumo_state_for_this_linkSignalID = traci_junction_state[junction_plus_idx[1]]     # e.g. 'GGrrGG'[2] --> 'r'
+                        # NOTE: this is where a granular function to set the state for every traffic link would be implemented
+                        # Instead I infer what the majority of light states are and determine what the whole landmark state should be
+                        link2sumostate.append(sumo_state_for_this_linkSignalID)    # Create a simple list for the sumo state chars e.g. 'r' or 'G' in order of their link index for this one light
+
+                    # Handle light state translation to carla based on whether there are 2 or 3 directions of travel. 
+                    # NOTE: Not currently able to handle n-directional lights.
+                    # NOTE: This involves some loss of precision and may lead to non-yielding green behavior among carla vehicles where there are conflicting traffic streams
+                    if len(resorted_idx_list) == 3:
+                        # I assume the equivalent carla state from the middle[1] (straight) lane traffic state from SUMO, as there is no granular control (currently) for controlling each direction
+                        target_carla_tl_state = self.get_carla_traffic_light_state(link2sumostate[1])
+                        carla_tl_to_change.set_state(target_carla_tl_state)
+
+                    elif len(resorted_idx_list) == 2:
+                        print("2 directions at this light")
+                        print(f"link2sumostate: {link2sumostate}")
+                        # For lanes with two possible directions and AT LEAST ONE direction is red, set both options in CARLA to red. Conservative option in case of split green/red scenarios
+                        if 'r' in link2sumostate:
+                            carla_tl_to_change.set_state(carla.TrafficLightState.Red)
+                        # If there are two possible directions and neither is red (may be yellow, green, yielding green, or other) set the carla tl to whatever state get_carla_traffic_light_state() interprets the first SUMO state to be
+                        else:
+                            target_carla_tl_state = self.get_carla_traffic_light_state(link2sumostate[0])
+                            carla_tl_to_change.set_state(target_carla_tl_state)
+                            
+                    else:
+                        print("something other than 2 or 3 light directions ...")
+                        print(f"link2sumostate: {link2sumostate}")
+                        raise Exception("There are either less than two or greater than three directions of travel from this light.")
+
+
+    # Copied this method to this object to avoid circular dependency. Originally found in bridge_helper.py as a static method of BridgeHelper
+    @staticmethod
+    def get_carla_traffic_light_state(sumo_tl_state):
+        """
+        Returns carla traffic light state based on sumo traffic light state.
+        """
+        if sumo_tl_state == SumoSignalState.RED or sumo_tl_state == SumoSignalState.RED_YELLOW:
+            return carla.TrafficLightState.Red
+
+        elif sumo_tl_state == SumoSignalState.YELLOW:
+            return carla.TrafficLightState.Yellow
+
+        elif sumo_tl_state == SumoSignalState.GREEN or \
+             sumo_tl_state == SumoSignalState.GREEN_WITHOUT_PRIORITY:
+            return carla.TrafficLightState.Green
+
+        elif sumo_tl_state == SumoSignalState.OFF:
+            return carla.TrafficLightState.Off
+
+        else:  # SumoSignalState.GREEN_RIGHT_TURN and SumoSignalState.OFF_BLINKING
+            return carla.TrafficLightState.Unknown
 
     def switch_off(self):
         """
@@ -345,7 +439,8 @@ class SumoSimulation(object):
         self.destroyed_actors = set()
 
         # Traffic light manager.
-        self.traffic_light_manager = SumoTLManager()
+        self.traffic_light_manager = SumoTLManager(self.net)
+        # ADDITION: Modified SumoTLManager to pass the read .net.xml obj to the TLManager upon instantiation
 
     @property
     def traffic_light_ids(self):

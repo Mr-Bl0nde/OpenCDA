@@ -49,7 +49,12 @@ def run_scenario(opt, scenario_params):
 
         spectator = scenario_manager.world.get_spectator()
 
+        time = 0
+        interval = 0.05
         while True:
+            print('\n\nTime: {}\n-------------------------------------------\n'.format(str(time)))
+            time += interval
+
             # simulation tick
             scenario_manager.tick()
 

@@ -16,6 +16,7 @@ else:
     sys.exit("please declare environment variable 'SUMO_HOME'")
 
 import carla
+import traci    # ADDITION
 
 from opencda.co_simulation.sumo_integration.constants import SPAWN_OFFSET_Z
 from opencda.co_simulation.sumo_integration.bridge_helper import BridgeHelper
@@ -74,12 +75,15 @@ class CoScenarioManager(ScenarioManager):
         self._tls = {}
         for landmark in self.carla_map.get_all_landmarks_of_type('1000001'):
             if landmark.id != '':
-                traffic_ligth = self.world.get_traffic_light(landmark)
-                if traffic_ligth is not None:
-                    self._tls[landmark.id] = traffic_ligth
+                traffic_light = self.world.get_traffic_light(landmark)
+                if traffic_light is not None:
+                    self._tls[landmark.id] = traffic_light
+                    # Freeze the traffic light object to prevent CARLA default phase switching
+                    traffic_light.freeze(True)
                 else:
                     logging.warning('Landmark %s is not linked to any '
                                     'traffic light', landmark.id)
+
 
         # sumo side initialization
         base_name = \
@@ -225,15 +229,35 @@ class CoScenarioManager(ScenarioManager):
 
         # # Updates traffic lights in sumo based on carla information.
         # # todo make sure the tl is synced
-        # common_landmarks = self.sumo.traffic_light_ids & \
-        #                    self.traffic_light_ids
-        # for landmark_id in common_landmarks:
-        #     carla_tl_state = self.get_traffic_light_state(landmark_id)
-        #     sumo_tl_state = BridgeHelper.get_sumo_traffic_light_state(
-        #         carla_tl_state)
+        #common_landmarks = # self.sumo.traffic_light_ids & \
+        common_landmarks = self.traffic_light_ids
 
-        #     # Updates all the sumo links related to this landmark.
-        #     self.sumo.synchronize_traffic_light(landmark_id, sumo_tl_state)
+
+
+
+
+
+        # Get SUMO information for a given CARLA landmark
+        # Get all available SUMO TL ids in the scenario
+        sumo_tlids = traci.trafficlight.getIDList()
+        print(f"\nSUMO tlids: {sumo_tlids}")
+        # Get the current state of every involved tlid
+        print("TLID STATES")
+        for tlid in sumo_tlids:
+            state = traci.trafficlight.getRedYellowGreenState(tlid)
+            print(f"\ntlid {tlid}: {state}")
+            # Get all links controlled by a tlid
+            tlid_links = traci.trafficlight.getControlledLinks(tlid)
+            print(f"tlid links: {tlid_links}")
+            # Get default phase duration of this tlid
+            tlid_default_duration = traci.trafficlight.getPhaseDuration(tlid)
+            print(f"tlid_default_duration (s): {tlid_default_duration}")
+            # Get time until next phase change for this tlid
+            time_2_change = traci.trafficlight.getNextSwitch(tlid) - traci.simulation.getTime()
+            print(f"time_2_change (s): {time_2_change}")
+
+        # Update the CARLA tl landmarks from their SUMO state every tick
+        self.sumo.traffic_light_manager.set_states_from_sumo(self.world)
 
         # update the sumo2carla dict to cav world
         self.cav_world.update_sumo_vehicles(self.sumo2carla_ids)

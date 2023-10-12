@@ -432,7 +432,14 @@ class BehaviorAgent(object):
         min_distance = 100000
         target_vehicle = None
 
+        # ADDITION: Seeing the methods available to a given obstacle_vehicle obj
+        if len(self.obstacle_vehicles) > 0:
+            print(f"Obstacle vehicle dir(): {dir(self.obstacle_vehicles[0])}")
+
         for vehicle in self.obstacle_vehicles:
+            print(f"Obstacle Vehicle ID: {vehicle.carla_id}")   # ADDITION: inspect attr values
+            print(f"Obstacle Vehicle Transform: {vehicle.get_transform()}")   # ADDITION: inspect attr values
+            print(f"Obstacle Vehicle Velocity: {vehicle.get_velocity()}")   # ADDITION: inspect attr values
             collision_free = self._collision_check.collision_circle_check(
                 rx, ry, ryaw, vehicle, self._ego_speed / 3.6, self._map,
                 adjacent_check=adjacent_check)
