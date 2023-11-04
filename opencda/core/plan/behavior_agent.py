@@ -97,6 +97,10 @@ class BehaviorAgent(object):
         self.speed_lim_dist = config_yaml['speed_lim_dist']
         self.speed_decrease = config_yaml['speed_decrease']
 
+        # trajectory planner
+        self._local_planner = LocalPlanner(
+            self, carla_map, config_yaml['local_planner'])
+
         # safety related
         self.safety_time = config_yaml['safety_time']
         self.emergency_param = config_yaml['emergency_param']
@@ -104,7 +108,9 @@ class BehaviorAgent(object):
         self.ttc = 1000
         # collision checker
         self._collision_check = CollisionChecker(
-            time_ahead=config_yaml['collision_time_ahead'])
+            self._local_planner,
+            time_ahead=config_yaml['collision_time_ahead']
+        )
         self.ignore_traffic_light = config_yaml['ignore_traffic_light']
         self.overtake_allowed = config_yaml['overtake_allowed']
         self.overtake_allowed_origin = config_yaml['overtake_allowed']
@@ -122,10 +128,6 @@ class BehaviorAgent(object):
         self.light_state = "Red"
         self.light_id_to_ignore = -1
         self.stop_sign_wait_count = 0
-
-        # trajectory planner
-        self._local_planner = LocalPlanner(
-            self, carla_map, config_yaml['local_planner'])
 
         # special behavior rlated
         self.car_following_flag = False
@@ -443,6 +445,11 @@ class BehaviorAgent(object):
             collision_free = self._collision_check.collision_circle_check(
                 rx, ry, ryaw, vehicle, self._ego_speed / 3.6, self._map,
                 adjacent_check=adjacent_check)
+            
+            collision_free_dummy = self._collision_check.intersection_left_collision_check(
+                rx, ry, ryaw, vehicle, self._ego_speed / 3.6, self._map,
+                adjacent_check=adjacent_check)
+
             if not collision_free:
                 vehicle_state = True
 

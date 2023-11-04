@@ -1215,7 +1215,7 @@
         <phase duration="7"  state="GGGrrr"/>
         <phase duration="3"  state="yyyrrr"/>
         <phase duration="7"  state="GrrrGG"/>
-        <phase duration="3"  state="yrrrGG"/>
+        <phase duration="3"  state="yrrryy"/>
         <param key="linkSignalID:0" value="1008"/>
         <param key="linkSignalID:1" value="1008"/>
         <param key="linkSignalID:2" value="1007"/>

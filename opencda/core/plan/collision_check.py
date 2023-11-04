@@ -12,6 +12,7 @@ import numpy as np
 
 from opencda.core.common.misc import cal_distance_angle, draw_trajetory_points
 from opencda.core.plan.spline import Spline2D
+from opencda.core.plan.local_planner_behavior import LocalPlanner
 
 
 class CollisionChecker:
@@ -28,7 +29,7 @@ class CollisionChecker:
         The offset between collision checking circle and the trajectory point.
     """
 
-    def __init__(self, time_ahead=1.2, circle_radius=1.0, circle_offsets=None):
+    def __init__(self, _local_planner, time_ahead=1.2, circle_radius=1.0, circle_offsets=None):
 
         self.time_ahead = time_ahead
         self._circle_offsets = [-1.0,
@@ -36,6 +37,7 @@ class CollisionChecker:
                                 1.0] \
             if circle_offsets is None else circle_offsets
         self._circle_radius = circle_radius
+        self.local_planner=_local_planner
 
     def is_in_range(
             self,
@@ -259,5 +261,57 @@ class CollisionChecker:
 
             if not collision_free:
                 break
+
+        return collision_free
+
+
+    def intersection_left_collision_check(
+            self,
+            path_x,
+            path_y,
+            path_yaw,
+            obstacle_vehicle,
+            speed,
+            carla_map,
+            adjacent_check=False):
+        """
+        Check whether an incoming flow of vehicles at an intersection conflict 
+        with the ego vehicle's planned left turn
+
+        Args:
+            -adjacent_check (boolean): Indicator of whether do adjacent check.
+             Note: always give full path for adjacent lane check.
+            -speed (float): ego vehicle speed in m/s.
+            -path_yaw (float): a list of yaw angles
+            -path_x (list): a list of x coordinates
+            -path_y (list): a list of y coordinates
+            -obstacle_vehicle (carla.vehicle): potention hazard vehicle
+             on the way
+        Returns:
+            -collision_free (boolean): Flag indicate whether the
+             current range is collision free.
+        """
+        # Collision checker returns true unless detection result is triggered
+        collision_free = True
+        
+        obstacle_vehicle_loc = obstacle_vehicle.get_location()
+        obstacle_vehicle_yaw = \
+            carla_map.get_waypoint(obstacle_vehicle_loc).transform.rotation.yaw
+        
+        print(f"obstacle vehicle loc: [{obstacle_vehicle_loc.x}, {obstacle_vehicle_loc.y}]")
+        print(f"obstacle vehicle yaw: {obstacle_vehicle_yaw}")
+        # print(f"ego path list: {list(zip(path_x, path_y))}")  # Excessive printing
+        # print(f"ego path yaw: {path_yaw}")                    # Excessive printing
+
+        # not sure what this queue means, but local_planner is now accessible
+        # By the time the two carla vehicles collide, all waypoint queues say LANEFOLLOW like (<carla.libcarla.Waypoint object at 0x000001E62E631510>, <RoadOption.LANEFOLLOW: 4>)
+        # I think something is causing this default value --> https://github.com/carla-simulator/carla/blob/92111a2ccb916669c3c22ca184f5f96214f37111/PythonAPI/carla/agents/navigation/local_planner.py#L181
+        # or probably more likely --> https://github.com/Mr-Bl0nde/OpenCDA/blob/9f4be791c759a2a9d3f1d597cc7fb7aed77c82f3/opencda/core/plan/global_route_planner.py#L140
+        print(self.local_planner.get_waypoints_queue())
+
+
+        # NOTE: I probably need to insert some logic into OpenCDA/.../local_planner_behavior.py to characterize a given set of waypoints as RoadOption.LEFT, RoadOption.STRAIGHT, or RoadOption.RIGHT. Idk if .STRAIGHT is even an option, but the priority is .LEFT
+        # Potential classification logic: https://github.com/carla-simulator/carla/blob/92111a2ccb916669c3c22ca184f5f96214f37111/PythonAPI/carla/agents/navigation/local_planner.py#L324
+        # if self._incoming_direction in [RoadOption.LEFT, RoadOption.RIGHT]
 
         return collision_free
